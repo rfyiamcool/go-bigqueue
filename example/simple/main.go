@@ -14,19 +14,14 @@ func init() {
 }
 
 func randString(n int) string {
-	const letterBytes = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	b := make([]byte, n)
-	for i := range b {
-		b[i] = letterBytes[rand.Intn(len(letterBytes))]
-	}
-	return string(b)
+	return strings.Repeat(".", n)
 }
 
 func main() {
 	var (
-		count       = 100000           // 10w
-		bucketBytes = 10 * 1024 * 1024 // 100mb
-		maxBuckets  = 10               // 100mb * 10
+		count       = 100000            // 10w
+		bucketBytes = 100 * 1024 * 1024 // 100mb
+		maxBuckets  = 10                // 100mb * 10
 	)
 
 	queue := bigqueue.NewQueueChains(bucketBytes, maxBuckets)
